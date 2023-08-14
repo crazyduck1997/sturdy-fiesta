@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/duck_mall
+  application:
+    name: duckmall
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+server:
+  port: 8080
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frank.demo.dao.UserMapper">
+
+
+    <resultMap id="userMap" type="com.frank.demo.model.dto.UserDTO">
+        <id column="id" property="id"></id>
+        <collection property="nameList" javaType="java.util.ArrayList" ofType="java.lang.String">
+            <result column="username" />
+        </collection>
+        <collection property="ageList" javaType="java.util.ArrayList" ofType="java.lang.Integer">
+            <result column="age" />
+        </collection>
+    </resultMap>
+
+    <select id="findById" resultMap="userMap">
+        select
+            id,
+               username,
+               age
+        from u_user
+    </select>
+
+    <update id="update">
+        update u_user set age = 1
+<if test="user.updatedBy != null and user.updatedBy != ''">
+    , updated_by = sysdate
+</if>
+where id = #{user.id}
+    </update>
+
+</mapper>
